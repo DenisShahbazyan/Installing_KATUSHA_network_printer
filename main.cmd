@@ -2,6 +2,17 @@
 chcp 65001
 
 
+echo Остановка службы Spooler...
+net stop Spooler
+
+echo Очистка папки PRINTERS...
+del /Q /F C:\Windows\System32\spool\PRINTERS\
+echo.
+
+echo Запуск службы Spooler...
+net start Spooler
+
+
 set "prndrvr=C:\Windows\System32\Printing_Admin_Scripts\ru-RU\prndrvr.vbs"
 set "prnport=C:\Windows\System32\Printing_Admin_Scripts\ru-RU\prnport.vbs"
 set "prnmngr=C:\Windows\System32\Printing_Admin_Scripts\ru-RU\prnmngr.vbs"
