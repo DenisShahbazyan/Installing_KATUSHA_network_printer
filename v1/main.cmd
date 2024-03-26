@@ -1,7 +1,11 @@
 @echo off
 chcp 65001
 
+echo Перед продолжением - удалите все принтеры KATUSHA из панели управления, если некоторые принтеры не удаляются - можно их оставить
 
+pause
+
+rem Очиста очереди печати
 echo Остановка службы Spooler...
 net stop Spooler
 
@@ -36,11 +40,7 @@ cscript "%prnmngr%" -a -p "%printerName%" -m "%driverName%" -r "IP_%printerIP%"
 set /p testPrint=Введите Y или нажмите Enter(чтобы напечатать тестовую страницу) или N для пропуска: 
 if /i "%testPrint%"=="Y" (
     cscript "%prnqctl%" -e -p "%printerName%"
-) else if /i "%testPrint%"=="N" (
-    REM Если пользователь ввел "N", пропускаем выполнение строки
-) else (
-    cscript "%prnqctl%" -e -p "%printerName%"
-)
+) 
 
 
 pause
